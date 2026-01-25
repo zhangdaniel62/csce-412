@@ -139,6 +139,7 @@ This section will document how I personally created a VM within AWS Lightsail. T
 	2. \includegraphics[width=250pt]{images/42441.png}
 10. Once open, confirm that that the status of the snapshot is "Available", right click on the AMI, and select "Launch instance from AMI"
 11. In the top right, create more instances as needed.
+12. Assign credentials to each VM to allow for remote access by others if needed
 
 ### General Guide on Creating Multiple VMs
 1. Download an ISO for Microsoft Windows Server
@@ -164,3 +165,4 @@ This section will document how I personally created a VM within AWS Lightsail. T
 	   ```
 5. Create a snapshot or convert the VM into a template/image of the system to allow for offline cloning of the VMs with all software already downloaded
 6. Use said snapshot to create as many VMs as necessary
+7. Assign credentials to each VM to allow for remote access by others if needed
