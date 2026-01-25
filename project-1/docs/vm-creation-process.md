@@ -60,7 +60,7 @@ This section will document how I personally created a VM within AWS Lightsail. T
 	2. Select "Windows Server 2022" as the default OS
 		1. I used v2026.01.14
 	3. Add the following in as a launch script to install Chocolatey
-		1. I used Chocolatey to circumvent the need to navigate through a browser to install the required software
+		1. I used Chocolatey to circumvent the need to navigate through a browser to install the required software. The below script was found directly on [Chocolatey](https://chocolatey.org/install)
 		2. ```ps1
 				<powershell>
 					Set-ExecutionPolicy Bypass -Scope Process -Force

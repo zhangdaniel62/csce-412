@@ -27,7 +27,7 @@ This document will serve as a potential use case of the VM that I created, given
 
 ## Getting Started
 
-1. Log into the VM using the credentials provided by IT.
+1. Log into the VM using the credentials provided by the company.
 2. Once logged in, you will be presented with the Windows desktop.
 3. All required development and documentation tools are preinstalled and ready for use.
 
