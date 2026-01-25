@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "6374c598296b3782",
+        "id": "276c8be1cac0ad7b",
         "type": "tabs",
         "children": [
           {
-            "id": "90ecb3c8d12bb499",
+            "id": "3791ed67b31ec93e",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -185,8 +185,20 @@
   },
   "active": "2af3c063a9424321",
   "lastOpenFiles": [
-    "Untitled",
+    "images/42441.png",
+    "89737.png",
+    "73061.png",
+    "images/89737 1.png",
     "project-1/docs/vm-creation-process.md",
+    "images/66547.png",
+    "images/12543.png",
+    "images/46336.png",
+    "project-1/build/vm-creation-process.pdf",
+    "project-1/build/output.pdf",
+    "images/logo.png",
+    "images",
+    "project-1/build",
+    "Untitled",
     "Untitled.md",
     "Untitled.canvas",
     "project-1/docs/end-user.md",
