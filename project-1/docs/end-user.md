@@ -39,7 +39,7 @@ After logging into the VM, the computer can be used similar to a regular compute
 
 - Visual Studio Code
 - Visual Studio
-- LibreOffice Word
+- LibreOffice Writer
 - Adobe Acrobat Reader
 
 In addition, g++, a compiler, was installed to allow for developers to compile code that was written in C++.

@@ -32,7 +32,7 @@ This document will mainly serve as documentation on how I created a singular VM 
 4. An IDE
 	1. Visual Studio
 5. A Document editor
-	1. Libreoffice Word
+	1. LibreOffice Writer
 6. A PDF Viewer
 	1. Adobe Acrobat Reader
 
