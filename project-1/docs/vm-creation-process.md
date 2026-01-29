@@ -28,7 +28,7 @@ This document will mainly serve as documentation on how I created a singular VM 
 2. A Code editor
 	1. Visual Studio Code
 3. A Compiler
-	1. g++, a C++ compiler
+	1. MSVC, a C++ compiler
 4. An IDE
 	1. Visual Studio
 5. A Document editor
@@ -83,12 +83,14 @@ This section will document how I personally created a VM within AWS Lightsail. T
 5. The following script was then used to install all required software:
 	1. ```ps1
 		choco install vscode -y --limit-output --no-progress
-		choco install mingw -y --limit-output --no-progress
 		choco install visualstudio2019community -y --limit-output --no-progress
 		choco install libreoffice-fresh -y --limit-output --no-progress
 		choco install adobereader -y --limit-output --no-progress --ignore-checksums
 	   ```
-
+6. Open "Visual Studio 2019"
+7. Click "Tools", "Get Tools and Features"
+	1. Install "Desktop development with C++" 
+		1. \includegraphics[width=400pt]{images/85205.png}
 ---
 
 ## Appendix
@@ -123,23 +125,26 @@ This section will document how I personally created a VM within AWS Lightsail. T
 5. Run the following ps1 script to install the apps mentioned above in PowerShell:
 	1. ```ps1
 		choco install vscode -y --limit-output --no-progress
-		choco install mingw -y --limit-output --no-progress
 		choco install visualstudio2019community -y --limit-output --no-progress
 		choco install libreoffice-fresh -y --limit-output --no-progress
 		choco install adobereader -y --limit-output --no-progress --ignore-checksums
 	   ```
-6. Confirm that all apps are installed
-7. Navigate back to Lightsail and create a snapshot by heading into the "snapshots" tab
+	2. Open "Visual Studio 2019"
+6. Click "Tools", "Get Tools and Features"
+	1. Install "Desktop development with C++" 
+		1. \includegraphics[width=400pt]{images/85205.png}
+7. Confirm that all apps are installed
+8. Navigate back to Lightsail and create a snapshot by heading into the "snapshots" tab
 	1. \includegraphics[width=300pt]{images/89737 1.png}
-8. Export the newly created snapshot to EC2 
+9. Export the newly created snapshot to EC2 
 	1. Click on the three dots (⋮)
 	2. Click on "Export to Amazon EC2"
-9. Open the exported snapshot in EC2. This is referred to as an AMI in EC2.
+10. Open the exported snapshot in EC2. This is referred to as an AMI in EC2.
 	1. This page is reached by going to the tab "Exports" from the tab bar
 	2. \includegraphics[width=250pt]{images/42441.png}
-10. Once open, confirm that that the status of the snapshot is "Available", right click on the AMI, and select "Launch instance from AMI"
-11. In the top right, create more instances as needed.
-12. Assign credentials to each VM to allow for remote access by others if needed
+11. Once open, confirm that that the status of the snapshot is "Available", right click on the AMI, and select "Launch instance from AMI"
+12. In the top right, create more instances as needed.
+13. Assign credentials to each VM to allow for remote access by others if needed
 
 ### General Guide on Creating Multiple VMs
 1. Download an ISO for Microsoft Windows Server

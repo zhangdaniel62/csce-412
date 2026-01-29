@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "276c8be1cac0ad7b",
+        "id": "22adbc47022ec460",
         "type": "tabs",
         "children": [
           {
-            "id": "3791ed67b31ec93e",
+            "id": "9921d5f796bdb226",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "project-1/docs/end-user.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "end-user"
+              "title": "New tab"
             }
           }
         ]
@@ -183,10 +179,13 @@
       "bases:Create new base": false
     }
   },
-  "active": "3791ed67b31ec93e",
+  "active": "9921d5f796bdb226",
   "lastOpenFiles": [
-    "project-1/build/end-user.pdf",
+    "project-1/docs/script.md",
     "project-1/docs/vm-creation-process.md",
+    "project-1/docs/end-user.md",
+    "images/85205.png",
+    "project-1/build/end-user.pdf",
     "images/42441.png",
     "89737.png",
     "73061.png",
@@ -200,9 +199,7 @@
     "images",
     "project-1/build",
     "Untitled",
-    "Untitled.md",
     "Untitled.canvas",
-    "project-1/docs/end-user.md",
     "README.md"
   ]
 }

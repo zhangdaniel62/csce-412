@@ -48,13 +48,13 @@ In addition, g++, a compiler, was installed to allow for developers to compile c
 
 ## Compiling C++ Code
 
-This VM is preconfigured for C++ development using g++. To compile a program:
+This VM is preconfigured for C++ development using MSVC. To compile a program:
 
-1. Open Visual Studio Code.
-2. Create or open a `.cpp` file.
-3. Open the integrated terminal.
-4. Compile using the following: `g++ main.cpp -o main `
-5. Run the executable using `./main`
+1. Open Visual Studio
+2. Create a new project
+3. Choose Console App (C++) and click on "Create"
+4. Open the generated main.cpp file
+5. Click on the run button to build and run the program
 
 ---
 
