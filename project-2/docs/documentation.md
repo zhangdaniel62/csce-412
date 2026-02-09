@@ -53,99 +53,97 @@ This section will document how I personally created a VM within AWS Lightsail. T
     - \includegraphics[width=150pt]{images/edit_inbound_rules.png}
 8. Add the following rules:
     - \includegraphics[width=150pt]{images/inbound_rules.png}
-6. Find the instance that you just created under "Instances" and click on connect
-7. Click on "EC2 Instance Connect", and click on "Connect". This should open a new tab, in which the next steps can be followed.
+9. Find the instance that you just created under "Instances" and click on connect
+10. Click on "EC2 Instance Connect", and click on "Connect". This should open a new tab, in which the next steps can be followed.
     - \includegraphics[width=150pt]{images/instance_connect.png}
 
 ### Installation of Docker and Docker Compose
-
-1. Install Docker Engine
-    1. Update packages
-        
-        ```bash 
-        sudo apt-get update
-        ```
-
-    2. Install pre-requisites
-        
-        ```bash
-        sudo apt-get install -y ca-certificates curl
-        ```
-
-    3. Create the keyrings directory
-        
-        ```bash
-        sudo install -m 0755 -d /etc/apt/keyrings
-        ```
-
-    4. Add the Docker GPG key
-        
-        ```bash
-        sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-        ```
-
-    5. Make sure that hte key is readable by APT
-
-        ```bash
-        sudo chmod a+r /etc/apt/keyrings/docker.asc
-        ```
-
-    6. Add Docker's repository to APT sources
-
-        ```bash
-        echo \
-        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-        $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-        sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-        ```
-
-    7. Update packages
-
-        ```bash
-        sudo apt-get update
-        ```
-
-    8. Install Docker Engine + Compose
-
-        ```bash
-        sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-        ```
+1. Update packages
     
-    9. Create Docker Group
+    ```bash 
+    sudo apt-get update
+    ```
 
-        ```bash
-        sudo groupadd docker
-        ```
-
-    10. Add current user to Docker Group
-
-        ```bash
-        sudo gpasswd -a $USER docker
-        ```
-
-    11. Apply group changes ot the current session
-
-        ```bash
-        newgrp docker
-        ```
+2. Install pre-requisites
     
-    ### Recreating the environment
+    ```bash
+    sudo apt-get install -y ca-certificates curl
+    ```
 
-    1. Clone the repository or download the zip file, which was submitted as well
-
-        ```bash
-        https://github.com/zhangdaniel62/csce-412-project-2.git
-        ```
-
-    2. Navigate to the project directory
-    3. Run the following command to build the base image
-
-        ```bash
-        docker compose up --build -d
-        ```
+3. Create the keyrings directory
     
-    4. The container instances will be created with the following format:
-        - 5 unique copies from the same base container
-            - http://<ip_address>:8080-4
-        - 5 identical copies of the same base container
-            - http://<ip_address>:8085-9
+    ```bash
+    sudo install -m 0755 -d /etc/apt/keyrings
+    ```
+
+4. Add the Docker GPG key
+    
+    ```bash
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    ```
+
+5. Make sure that hte key is readable by APT
+
+    ```bash
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+    ```
+
+6. Add Docker's repository to APT sources
+
+    ```bash
+    echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    ```
+
+7. Update packages
+
+    ```bash
+    sudo apt-get update
+    ```
+
+8. Install Docker Engine + Compose
+
+    ```bash
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    ```
+
+9. Create Docker Group
+
+    ```bash
+    sudo groupadd docker
+    ```
+
+10. Add current user to Docker Group
+
+    ```bash
+    sudo gpasswd -a $USER docker
+    ```
+
+11. Apply group changes ot the current session
+
+    ```bash
+    newgrp docker
+    ```
+
+### Recreating the environment
+
+1. Clone the repository or download the zip file, which was submitted as well
+
+    ```bash
+    https://github.com/zhangdaniel62/csce-412-project-2.git
+    ```
+
+2. Navigate to the project directory
+3. Run the following command to build the base image
+
+    ```bash
+    docker compose up --build -d
+    ```
+
+4. The container instances will be created with the following format:
+    - 5 unique copies from the same base container
+        - http://<ip_address>:8080-4
+    - 5 identical copies of the same base container
+        - http://<ip_address>:8085-9
