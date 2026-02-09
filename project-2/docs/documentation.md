@@ -147,3 +147,20 @@ This section will document how I personally created a VM within AWS Lightsail. T
         - http://<ip_address>:8080-4
     - 5 identical copies of the same base container
         - http://<ip_address>:8085-9
+
+## Extra Credit
+
+I did the extra credit for creating 5 identical containers by porting over Visual Studio Code through the following [image](https://hub.docker.com/r/linuxserver/code-server). It should be included in the submission under the file "docker-compose-bonus.yml".
+
+- Command to build the containers
+
+```bash 
+docker compose -f docker-compose-bonus.yml up -d --build
+```
+
+- Command to remove the containers along with the bolumes
+
+
+```bash
+docker compose -f docker-compose-bonus.yml down -v
+```
