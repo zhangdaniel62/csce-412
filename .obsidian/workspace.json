@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "22adbc47022ec460",
+        "id": "1e9a02443ff8aedb",
         "type": "tabs",
         "children": [
           {
-            "id": "9921d5f796bdb226",
+            "id": "dda1b3f5a9c5f40b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "project-2/docs/documentation.md",
+                "file": "project-3/docs/uml-diagram.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "documentation"
+              "title": "uml-diagram"
             }
           }
         ]
@@ -183,8 +183,12 @@
       "bases:Create new base": false
     }
   },
-  "active": "9921d5f796bdb226",
+  "active": "dda1b3f5a9c5f40b",
   "lastOpenFiles": [
+    "project-3/docs/uml-diagram.md",
+    "project-2/docs/documentation.md",
+    "project-3/uml-diagram.md",
+    "project-3/docs",
     "project-1/docs/script.md",
     "project-1/docs/vm-creation-process.md",
     "project-1/docs/end-user.md",

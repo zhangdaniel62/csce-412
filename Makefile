@@ -23,3 +23,7 @@ pdf:
 docx:
 	mkdir -p $(OUTPUT_DIR)
 	pandoc $(MD_DIR)/$(FILE).md -o $(OUTPUT_DIR)/$(FILE).docx 
+
+html+css: 
+	mkdir -p $(OUTPUT_DIR)
+	pandoc $(MD_DIR)/$(FILE).md -o $(OUTPUT_DIR)/$(FILE).html --standalone
