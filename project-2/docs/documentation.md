@@ -150,7 +150,7 @@ This section will document how I personally created a VM within AWS Lightsail. T
 
 ## Extra Credit
 
-I did the extra credit for creating 5 identical containers by porting over Visual Studio Code through the following [image](https://hub.docker.com/r/linuxserver/code-server). It should be included in the submission under the file "docker-compose-bonus.yml".
+I did the extra credit for creating 5 identical containers by porting over Visual Studio Code through the following [image](https://hub.docker.com/r/linuxserver/code-server). This container allows for you to develop and debug code in a containerized environment, which can also be used for remote development. It should be included in the submission under the file "docker-compose-bonus.yml".
 
 - Command to build the containers
 
@@ -158,7 +158,7 @@ I did the extra credit for creating 5 identical containers by porting over Visua
 docker compose -f docker-compose-bonus.yml up -d --build
 ```
 
-- Command to remove the containers along with the bolumes
+- Command to remove the containers along with the volumes
 
 
 ```bash
