@@ -8,6 +8,7 @@
 class IPBlocker {
     public:
         IPBlocker();
+        ~IPBlocker();
         bool isBlocked(const std::string& ip) const;
         void addIP(const std::pair<std::string, std::string>& ip);
         void addIP(const std::vector<std::pair<std::string, std::string>>& ips);
