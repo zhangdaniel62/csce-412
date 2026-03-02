@@ -210,7 +210,7 @@ void LoadBalancer::simulateCycle()
 }
 
 // ======================== PUBLIC METHODS ========================
-void LoadBalancer::addRequest(const Request& req)
+void LoadBalancer::addRequest(Request req)
 {
     // Check to see if IP is in correct range
     if (blocker.isBlocked(req.getIpIn()))
@@ -218,7 +218,7 @@ void LoadBalancer::addRequest(const Request& req)
         // TODO: Add logging
         return;
     }
-    requestQueue.push(req);
+    requestQueue.push(std::move(req));
 }
 
 void LoadBalancer::run(int totalCycles)
