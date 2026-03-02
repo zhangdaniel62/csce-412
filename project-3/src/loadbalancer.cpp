@@ -16,7 +16,7 @@ LoadBalancer::LoadBalancer(int numServers,
                            unsigned int minTimeStreaming,
                            unsigned int maxTimeStreaming) : nextServerId(0),
                                                             cooldown(cooldown),
-                                                            clock(0),
+                                                            clock(1),
                                                             lastCheckedClock(0),
                                                             blocker(blocker),
                                                             rng(std::random_device{}()),
@@ -57,6 +57,9 @@ LoadBalancer::LoadBalancer(int numServers,
     {
         addRequest(generateRequest());
     }
+
+    totalRequests = requestQueue.size();
+    totalServersAdded = servers.size();
     // TODO: add logging
 }
 
@@ -79,6 +82,7 @@ void LoadBalancer::addServer(int amt)
     for (int i = 0; i < amt; i++)
     {
         servers.emplace_back(nextServerId++);
+        totalServersAdded++;
     }
 }
 
@@ -106,6 +110,8 @@ void LoadBalancer::removeServer(int amt)
             i++;
         }
     }
+
+    totalServersRemoved += removed;
 }
 
 void LoadBalancer::checkScale()
@@ -181,21 +187,27 @@ void LoadBalancer::assignRequests()
 
 void LoadBalancer::process()
 {
-    unsigned int count = 0;
+    unsigned int busyThisCycle = 0;
+    unsigned int completedThisCycle = 0;
+
     for (auto &server : servers)
     {
-        if (server.processCycle())
+        bool wasBusy = server.isBusy();
+        if (wasBusy)
         {
-            count++;
+            busyThisCycle++;
+            server.processCycle();          // returns true every tick of work, but we don't need it
+            if (!server.isBusy()) completedThisCycle++;
         }
     }
+
+    totalRequestsProcessed += completedThisCycle;
+    
     // TODO: Add logging
 }
 
 void LoadBalancer::simulateCycle()
 {
-    clock++;
-
     std::uniform_int_distribution<int> newReqDist(1, 100);
     bool generateNewReq = (newReqDist(rng) <= newReqFreq);
     if (generateNewReq)
@@ -207,6 +219,11 @@ void LoadBalancer::simulateCycle()
     assignRequests();
     process();
     checkScale();
+    clock++;
+}
+
+void LoadBalancer::printFinalStats() {
+    // TODO: add logging
 }
 
 // ======================== PUBLIC METHODS ========================
@@ -215,16 +232,28 @@ void LoadBalancer::addRequest(Request req)
     // Check to see if IP is in correct range
     if (blocker.isBlocked(req.getIpIn()))
     {
+        totalRequestsBlocked++;
         // TODO: Add logging
         return;
     }
     requestQueue.push(std::move(req));
+    totalRequests++;
 }
 
 void LoadBalancer::run(int totalCycles)
 {
-    for (int i = 0; i < totalCycles; i++)
+    // Reset all stats for another run if needed
+    totalRequests = 0;
+    totalRequestsProcessed = 0;
+    totalRequestsBlocked = 0;
+    totalServersAdded = 0;
+    totalServersRemoved = 0;
+    clock = 1;
+    
+    while (clock <= totalCycles)
     {
         simulateCycle();
     }
+
+    printFinalStats();
 }
