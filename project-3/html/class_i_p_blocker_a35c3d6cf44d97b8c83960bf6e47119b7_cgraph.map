@@ -1,0 +1,5 @@
+<map id="IPBlocker::removeIP" name="IPBlocker::removeIP">
+<area shape="rect" id="Node000001" title="Remove multiple blocked IPv4 ranges." alt="" coords="5,5,148,31"/>
+<area shape="rect" id="Node000002" href="$class_i_p_blocker.html#a9b9cbbda209186d78262a985cff0e913" title="Remove a blocked IPv4 range." alt="" coords="196,5,338,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,16,183,18,178,18,148,21"/>
+</map>

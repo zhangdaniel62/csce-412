@@ -8,7 +8,7 @@
 Run the following commands to compile and run the simulation:
 
 ```bash
-make run
+make all
 ```
 
 Run the following commands to clean up the simulation:

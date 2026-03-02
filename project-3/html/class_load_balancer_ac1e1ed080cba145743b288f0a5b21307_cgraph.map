@@ -1,0 +1,5 @@
+<map id="LoadBalancer::addRequest" name="LoadBalancer::addRequest">
+<area shape="rect" id="Node000001" title="Add a request to the internal queue if not blocked." alt="" coords="5,5,184,31"/>
+<area shape="rect" id="Node000002" href="$class_request.html#ae6ab7551a2140e226a7b71d31346203d" title="Get the source IP address." alt="" coords="232,5,350,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,16,219,18,214,18,184,21"/>
+</map>

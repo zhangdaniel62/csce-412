@@ -1,7 +1,47 @@
+/**
+ * @file Config.cpp
+ * @brief YAML configuration loader for the load balancer simulation.
+ *
+ * This file implements `loadConfig()`, which reads a YAML configuration file
+ * (via yaml-cpp) and populates a `Config` struct used by the simulation.
+ *
+ * Expected YAML structure (example):
+ * @code{.yaml}
+ * simulation:
+ *   totalCycles: 10000
+ *   initialServers: 10
+ *   cooldown: 50
+ *   newReqFreq: 10
+ * requestTimes:
+ *   processing:
+ *     min: 2
+ *     max: 20
+ *   streaming:
+ *     min: 5
+ *     max: 40
+ * firewall:
+ *   blockedRanges:
+ *     - start: "192.168.0.0"
+ *       end:   "192.168.255.255"
+ * @endcode
+ */
 #include "Config.h"
 #include <yaml-cpp/yaml.h>
 #include <stdexcept>
 
+/**
+ * @brief Load simulation settings from a YAML configuration file.
+ *
+ * This function parses optional YAML sections and applies basic validation.
+ * Any missing keys simply keep their default values as defined in `Config`.
+ *
+ * @param path Path to the YAML configuration file.
+ * @return Config Populated configuration struct.
+ *
+ * @throws YAML::BadFile If the file cannot be opened/read.
+ * @throws YAML::ParserException If the YAML is malformed.
+ * @throws std::invalid_argument If basic validation fails.
+ */
 Config loadConfig(const std::string &path)
 {
     YAML::Node root = YAML::LoadFile(path);

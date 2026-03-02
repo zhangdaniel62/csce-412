@@ -1,0 +1,7 @@
+<map id="LoadBalancer::newRequest" name="LoadBalancer::newRequest">
+<area shape="rect" id="Node000001" title="Potentially generate and enqueue a new request for the current cycle." alt="" coords="5,5,187,31"/>
+<area shape="rect" id="Node000002" href="$class_load_balancer.html#ac1e1ed080cba145743b288f0a5b21307" title="Add a request to the internal queue if not blocked." alt="" coords="235,5,413,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,16,222,18,217,18,187,21"/>
+<area shape="rect" id="Node000003" href="$class_request.html#ae6ab7551a2140e226a7b71d31346203d" title="Get the source IP address." alt="" coords="461,5,579,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="413,16,448,18,443,18,414,21"/>
+</map>

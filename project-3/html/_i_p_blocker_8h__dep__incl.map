@@ -1,0 +1,12 @@
+<map id="src/IPBlocker.h" name="src/IPBlocker.h">
+<area shape="rect" id="Node000001" title="Firewall&#45;style IP range blocker used by the load balancer simulation." alt="" coords="164,5,275,31"/>
+<area shape="rect" id="Node000002" href="$_i_p_blocker_8cpp.html" title="Implementation of the IPBlocker firewall component." alt="" coords="5,79,130,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,40,95,81,92,76,181,36"/>
+<area shape="rect" id="Node000003" href="$_load_balancer_8h.html" title="Public interface for the LoadBalancer simulation controller." alt="" coords="153,79,286,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="221,44,222,80,217,77,218,49"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html" title="Program entry point for the load balancer simulation." alt="" coords="275,153,372,178"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="256,37,280,55,300,78,318,117,325,153,320,151,313,118,296,80,277,59,255,42"/>
+<area shape="rect" id="Node000004" href="$_load_balancer_8cpp.html" title="Implementation of the LoadBalancer simulation controller." alt="" coords="105,153,251,178"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="207,117,187,154,183,150,203,119"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="250,111,308,152,303,152,249,116"/>
+</map>

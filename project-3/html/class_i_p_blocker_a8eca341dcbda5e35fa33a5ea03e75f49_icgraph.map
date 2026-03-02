@@ -1,0 +1,7 @@
+<map id="IPBlocker::addIP" name="IPBlocker::addIP">
+<area shape="rect" id="Node000001" title="Add a blocked IPv4 range." alt="" coords="174,31,294,56"/>
+<area shape="rect" id="Node000002" href="$class_i_p_blocker.html#a8ea65781cdf55b90cba005412c2d9dae" title="Add multiple blocked IPv4 ranges." alt="" coords="5,5,126,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,33,126,30,126,25,161,32"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="Program entry point." alt="" coords="41,55,90,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="156,55,91,67,90,61,161,54"/>
+</map>

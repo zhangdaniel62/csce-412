@@ -1,3 +1,15 @@
+/**
+ * @file main.cpp
+ * @brief Program entry point for the load balancer simulation.
+ *
+ * This file initializes logging (via spdlog), loads a YAML configuration,
+ * constructs the firewall (IPBlocker) and LoadBalancer, and runs the
+ * simulation for the configured number of clock cycles.
+ *
+ * Logging:
+ * A shared spdlog logger named "lb" is configured with both a colored
+ * console sink and a file sink (logs/loadbalancer.txt).
+ */
 #include "LoadBalancer.h"
 #include "Config.h"
 #include "IPBlocker.h"
@@ -12,6 +24,15 @@
 #include <memory>
 #include <vector>
 
+/**
+ * @brief Initialize the shared simulation logger.
+ *
+ * Creates a spdlog logger named "lb" with two sinks:
+ *  - A colored console sink for terminal output.
+ *  - A file sink that appends to logs/loadbalancer.txt.
+ *
+ * If the logger already exists, this function does nothing.
+ */
 void init_logging()
 {
     // Prevent double initialization
@@ -43,6 +64,19 @@ void init_logging()
 }
 
 Config loadConfig(const std::string &path);
+/**
+ * @brief Program entry point.
+ *
+ * Usage:
+ * @code{.sh}
+ * ./lb config.yaml
+ * @endcode
+ * If no argument is provided, the program defaults to "config.yaml".
+ *
+ * @param argc Number of command-line arguments.
+ * @param argv Argument vector. argv[1] may specify the config file path.
+ * @return int Exit status code (0 on success).
+ */
 int main(int argc, char *argv[])
 {
     init_logging();

@@ -1,3 +1,17 @@
+/**
+ * @file LoadBalancer.cpp
+ * @brief Implementation of the LoadBalancer simulation controller.
+ *
+ * This file implements the LoadBalancer class, which coordinates a queue of
+ * incoming Requests, assigns work to a pool of WebServer instances, processes
+ * requests over discrete clock cycles, and dynamically scales the server pool
+ * based on queue size thresholds.
+ *
+ * Logging:
+ * The simulation uses a shared spdlog logger (named "lb") that is expected to
+ * be initialized by the program entry point (typically main.cpp). If the logger
+ * is not present, the simulation still functions, but log output is suppressed.
+ */
 #include "LoadBalancer.h"
 #include <utility>
 #include <random>
@@ -10,6 +24,23 @@
 using std::string;
 using std::to_string;
 
+/**
+ * @brief Construct a LoadBalancer and initialize the simulation state.
+ *
+ * Creates an initial pool of servers, fills the starting request queue
+ * (typically servers * 100 requests), and validates request timing parameters.
+ *
+ * @param numServers Initial number of WebServer instances to create.
+ * @param cooldown Number of cycles to wait between scaling checks.
+ * @param blocker Firewall component used to block request source IP ranges.
+ * @param newReqFreq Probability (0-100) that a new request arrives each cycle.
+ * @param minTimeProcessing Minimum duration for processing requests (cycles).
+ * @param maxTimeProcessing Maximum duration for processing requests (cycles).
+ * @param minTimeStreaming Minimum duration for streaming requests (cycles).
+ * @param maxTimeStreaming Maximum duration for streaming requests (cycles).
+ *
+ * @throws std::invalid_argument If any request timing range is invalid.
+ */
 LoadBalancer::LoadBalancer(int numServers,
                            int cooldown,
                            IPBlocker blocker,
@@ -74,18 +105,42 @@ LoadBalancer::LoadBalancer(int numServers,
 
 // ======================== PRIVATE METHODS ========================
 
+/**
+ * @brief Check whether the queue is below the minimum target for current capacity.
+ *
+ * The minimum threshold is defined as 50 requests per active server.
+ *
+ * @return true If the current queue size is less than 50 * servers.
+ * @return false Otherwise.
+ */
 bool LoadBalancer::underMinThreshold()
 {
     unsigned int limit = 50 * servers.size();
     return requestQueue.size() < limit;
 }
 
+/**
+ * @brief Check whether the queue is above the maximum target for current capacity.
+ *
+ * The maximum threshold is defined as 80 requests per active server.
+ *
+ * @return true If the current queue size is greater than 80 * servers.
+ * @return false Otherwise.
+ */
 bool LoadBalancer::aboveMaxThreshold()
 {
     unsigned int limit = 80 * servers.size();
     return requestQueue.size() > limit;
 }
 
+/**
+ * @brief Add one or more servers to the pool.
+ *
+ * New servers are assigned unique IDs using an internal monotonically
+ * increasing counter.
+ *
+ * @param amt Number of servers to add. If amt <= 0, no action is taken.
+ */
 void LoadBalancer::addServer(int amt)
 {
     if (amt <= 0)
@@ -115,6 +170,14 @@ void LoadBalancer::addServer(int amt)
     }
 }
 
+/**
+ * @brief Remove up to a given number of idle servers from the pool.
+ *
+ * Only servers that are not currently busy are eligible for removal.
+ * The load balancer will not remove the final remaining server.
+ *
+ * @param amt Maximum number of servers to remove.
+ */
 void LoadBalancer::removeServer(int amt)
 {
     auto logger = spdlog::get("lb");
@@ -164,6 +227,13 @@ void LoadBalancer::removeServer(int amt)
     }
 }
 
+/**
+ * @brief Evaluate whether to scale the server pool up or down.
+ *
+ * Scaling decisions are gated by a cooldown timer. When eligible, the load
+ * balancer removes one server if the queue falls below 50 * servers, and adds
+ * one server if the queue rises above 80 * servers.
+ */
 void LoadBalancer::checkScale()
 {
     auto logger = spdlog::get("lb");
@@ -191,6 +261,14 @@ void LoadBalancer::checkScale()
     }
 }
 
+/**
+ * @brief Generate a new random Request.
+ *
+ * Randomly chooses a request type (processing or streaming), generates random
+ * source/destination IPv4 addresses, and selects a duration based on the type.
+ *
+ * @return Request Newly generated request instance.
+ */
 Request LoadBalancer::generateRequest()
 {
 
@@ -229,6 +307,12 @@ Request LoadBalancer::generateRequest()
     return req;
 }
 
+/**
+ * @brief Assign queued requests to idle servers.
+ *
+ * Iterates over the server pool and assigns the oldest queued requests to any
+ * servers that are not currently busy.
+ */
 void LoadBalancer::assignRequests()
 {
     unsigned int counter = 0;
@@ -257,6 +341,12 @@ void LoadBalancer::assignRequests()
     }
 }
 
+/**
+ * @brief Process one simulation tick on all servers.
+ *
+ * Each busy server processes one cycle of work. This method also tracks the
+ * number of servers that were busy this cycle and how many requests completed.
+ */
 void LoadBalancer::process()
 {
     unsigned int busyThisCycle = 0;
@@ -291,6 +381,15 @@ void LoadBalancer::process()
     }
 }
 
+/**
+ * @brief Simulate a single clock cycle.
+ *
+ * The cycle performs the following actions in order:
+ * 1) Potentially generate a new request
+ * 2) Assign requests to idle servers
+ * 3) Process active requests for one tick
+ * 4) Check whether scaling actions should occur
+ */
 void LoadBalancer::simulateCycle()
 {
     newRequest();
@@ -302,6 +401,13 @@ void LoadBalancer::simulateCycle()
 
 // ======================== PUBLIC METHODS ========================
 
+/**
+ * @brief Potentially generate and enqueue a new request for this cycle.
+ *
+ * Uses a probability (newReqFreq) to decide whether a new request arrives.
+ * If one arrives, it is generated and passed through the firewall before being
+ * added to the request queue.
+ */
 void LoadBalancer::newRequest()
 {
     std::uniform_int_distribution<int> newReqDist(1, 100);
@@ -314,6 +420,12 @@ void LoadBalancer::newRequest()
     }
 }
 
+/**
+ * @brief Log a summary of simulation statistics.
+ *
+ * Prints totals for generated/processed/blocked requests and scaling actions,
+ * as well as final queue size and active server count.
+ */
 void LoadBalancer::printFinalStats()
 {
     auto logger = spdlog::get("lb");
@@ -329,6 +441,10 @@ void LoadBalancer::printFinalStats()
     logger->info("  Requests still queued:    {}", requestQueue.size());
     logger->info("  Active servers:           {}", servers.size());
 }
+
+/**
+ * @brief Log initial simulation parameters and starting state.
+ */
 void LoadBalancer::printInitialStats()
 {
     auto logger = spdlog::get("lb");
@@ -344,6 +460,14 @@ void LoadBalancer::printInitialStats()
     logger->info("  Range for processing requests: [{}, {}]", minTimeProcessing, maxTimeProcessing);
 }
 
+/**
+ * @brief Enqueue a request if it is not blocked by the firewall.
+ *
+ * Requests with a blocked source IP are discarded and counted as blocked.
+ * Accepted requests are appended to the internal FIFO queue.
+ *
+ * @param req Request to enqueue (moved into the queue on success).
+ */
 void LoadBalancer::addRequest(Request req)
 {
     // Check to see if IP is in correct range
@@ -365,6 +489,11 @@ void LoadBalancer::addRequest(Request req)
     }
 }
 
+/**
+ * @brief Run the simulation for a fixed number of cycles.
+ *
+ * @param totalCycles Number of clock cycles to simulate.
+ */
 void LoadBalancer::run(int totalCycles)
 {
     auto logger = spdlog::get("lb");

@@ -1,0 +1,20 @@
+<map id="src/IPBlocker.cpp" name="src/IPBlocker.cpp">
+<area shape="rect" id="Node000001" title="Implementation of the IPBlocker firewall component." alt="" coords="288,5,412,31"/>
+<area shape="rect" id="Node000002" href="$_i_p_blocker_8h.html" title="Firewall&#45;style IP range blocker used by the load balancer simulation." alt="" coords="150,79,238,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="321,33,236,75,233,70,326,30"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="249,153,302,178"/>
+<area shape="poly" id="edge9_Node000001_Node000005" title=" " alt="" coords="340,30,321,54,303,80,291,109,282,139,279,136,286,108,298,78,317,51,335,33"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="313,79,387,105"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="352,29,352,65,348,62,349,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="412,79,480,105"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="367,29,421,70,416,70,366,34"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="504,79,583,105"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="383,29,499,73,494,74,383,34"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,153,66,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="168,108,77,148,75,144,166,103"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="90,153,144,178"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="184,104,142,144,139,140,179,106"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="209,103,253,143,248,142,207,108"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="168,153,226,178"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="196,103,198,139,193,136,193,107"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="src/Config.h" name="src/Config.h">
+<area shape="rect" id="Node000001" title="Configuration data structure for the load balancer simulation." alt="" coords="26,5,118,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,59,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,30,48,67,44,64,63,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="83,79,141,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="80,29,101,65,95,66,77,34"/>
+</map>
