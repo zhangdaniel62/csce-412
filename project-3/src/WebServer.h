@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Request.hpp"
+#include "Request.h"
 
 class WebServer
 {
 public:
     WebServer(int id);
     void assign(Request req);
-    void processCycle();
+    bool processCycle();
     bool isBusy();
 
 private:

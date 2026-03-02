@@ -1,4 +1,4 @@
-#include "WebServer.hpp"
+#include "WebServer.h"
 
 WebServer::WebServer(int id) : id(id), busy(false), req() {}
 
@@ -8,7 +8,7 @@ void WebServer::assign(Request req)
     busy = true;
 }
 
-void WebServer::processCycle()
+bool WebServer::processCycle()
 {
     if (busy)
     {
@@ -17,8 +17,11 @@ void WebServer::processCycle()
         if (req.isComplete())
         {
             busy = false;
+            // TODO: add logging
         }
+        return true;
     }
+    return false;
 }
 
 bool WebServer::isBusy()

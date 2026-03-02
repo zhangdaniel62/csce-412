@@ -1,0 +1,20 @@
+simulation:
+  totalCycles: 10000
+  initialServers: 10
+  cooldown: 50
+  newReqFreq: 50
+
+requestTimes: 
+  processing:
+    min: 20
+    max: 50
+  streaming:
+    min: 1
+    max: 20
+
+firewall:
+  blockedRanges:
+    - start: "192.168.0.0"
+      end:   "192.168.255.255"
+    - start: "10.0.0.0"
+      end:   "10.255.255.255"

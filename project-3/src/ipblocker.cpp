@@ -1,4 +1,4 @@
-#include "IPBlocker.hpp"
+#include "IPBlocker.h"
 #include <algorithm>
 #include <sstream>
 #include <stdexcept>
