@@ -37,12 +37,16 @@ Config loadConfig(const std::string &path)
         }
     }
 
-    for (const auto &range : root["firewall"]["blockedRanges"])
+    // Firewall ranges (optional)
+    if (root["firewall"] && root["firewall"]["blockedRanges"])
     {
-        std::string start = range["start"].as<std::string>();
-        std::string end = range["end"].as<std::string>();
+        for (const auto &range : root["firewall"]["blockedRanges"])
+        {
+            std::string start = range["start"].as<std::string>();
+            std::string end = range["end"].as<std::string>();
 
-        blockedRanges.emplace_back(end, start);
+            blockedRanges.emplace_back(end, start);
+        }
     }
 
     // basic validation
