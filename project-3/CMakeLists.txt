@@ -7,10 +7,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Your executable name
 add_executable(lb
     src/main.cpp
-    src/LoadBalancer.cpp
-    src/WebServer.cpp
-    src/Request.cpp
-    src/IPBlocker.cpp
+    src/loadbalancer.cpp
+    src/webserver.cpp
+    src/request.cpp
+    src/ipblocker.cpp
     src/Config.cpp
 )
 
