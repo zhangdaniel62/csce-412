@@ -3,7 +3,7 @@
 ## Compiling and Running the Simulation
 
 > \[!NOTE]
-> This project requires a C++17 compiler, and additionally requires yaml-cpp, a YAML parser for C++.
+> This project requires a C++23 compiler, and requires cmake version 3.16 or newer.
 
 Run the following commands to compile and run the simulation:
 

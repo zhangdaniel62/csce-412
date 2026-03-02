@@ -24,6 +24,9 @@ public:
                  unsigned int maxTimeStreaming);
     void run(int totalCycles);
     void addRequest(Request req);
+    void printFinalStats();
+    void printInitialStats();
+    void newRequest();
 
 private:
     queue<Request> requestQueue;
@@ -56,5 +59,4 @@ private:
     bool aboveMaxThreshold();
     void addServer(int amt);
     void removeServer(int amt);
-    void printFinalStats();
 };

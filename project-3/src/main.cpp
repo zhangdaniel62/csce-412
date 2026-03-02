@@ -31,7 +31,7 @@ void init_logging()
     auto logger = std::make_shared<spdlog::logger>("lb", sinks.begin(), sinks.end());
 
     // Format
-    logger->set_pattern("[%Y-%m-%d %H:%M:%S] [%^%l%$] %v");
+    logger->set_pattern("[%^%l%$] %v");
 
     // Default level (change to debug if needed)
     logger->set_level(spdlog::level::info);
@@ -46,7 +46,6 @@ Config loadConfig(const std::string &path);
 int main(int argc, char *argv[])
 {
     init_logging();
-    spdlog::get("lb")->info("Starting load balancer...");
 
     std::string path = (argc >= 2) ? argv[1] : "config.yaml";
 
@@ -63,6 +62,14 @@ int main(int argc, char *argv[])
                     cfg.maxTimeProcessing,
                     cfg.minTimeStreaming,
                     cfg.maxTimeStreaming);
-
+    
+    lb.printInitialStats();
+    spdlog::get("lb")->info("=====================================");
+    spdlog::get("lb")->info("Starting load balancer...");
     lb.run(cfg.totalCycles);
+    spdlog::get("lb")->info("Load balancer finished.");
+    spdlog::get("lb")->info("=====================================");
+    lb.printFinalStats();
+
+    return 0;
 }

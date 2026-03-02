@@ -45,7 +45,7 @@ Config loadConfig(const std::string &path)
             std::string start = range["start"].as<std::string>();
             std::string end = range["end"].as<std::string>();
 
-            blockedRanges.emplace_back(end, start);
+            cfg.blockedRanges.emplace_back(end, start);
         }
     }
 
