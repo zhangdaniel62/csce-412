@@ -27,7 +27,8 @@ LoadBalancer::LoadBalancer(int numServers,
 
 {
     auto logger = spdlog::get("lb");
-    if (!logger) return;
+    if (!logger)
+        return;
 
     // Edge cases for minTime and maxTime for processing and streaming
     if (minTimeProcessing > maxTimeProcessing)
@@ -166,7 +167,8 @@ void LoadBalancer::removeServer(int amt)
 void LoadBalancer::checkScale()
 {
     auto logger = spdlog::get("lb");
-    if (!logger) return;
+    if (!logger)
+        return;
 
     if (clock - lastCheckedClock >= cooldown)
     {
@@ -181,7 +183,8 @@ void LoadBalancer::checkScale()
             logger->warn("Cycle {}: The queue size ({}) is above the maximum target ({}). Attempting to add 1 server.", clock, requestQueue.size(), 80 * servers.size());
             addServer(1);
         }
-        else {
+        else
+        {
             logger->info("No servers added or removed");
         }
         lastCheckedClock = clock;
@@ -199,7 +202,7 @@ Request LoadBalancer::generateRequest()
 
     // Generate all random values
     char type = (typeDist(rng) == 0) ? 'P' : 'S';
-    string typeStr = (type == 'P') ? "Processing" : "Streaming";
+    string typeStr = (type == 'P') ? "processing" : "streaming";
 
     int aIn = ipDist(rng);
     int bIn = ipDist(rng);
@@ -221,7 +224,7 @@ Request LoadBalancer::generateRequest()
 
     if (auto logger = spdlog::get("lb"))
     {
-        logger->debug("Cycle {}: Generated a {} request with a duration of {} clock cycles from {} to {}", clock, type, time, ipIn, ipOut);
+        logger->debug("Cycle {}: Generated a {} request with a duration of {} clock cycles from {} to {}", clock, typeStr, time, ipIn, ipOut);
     }
     return req;
 }
@@ -266,14 +269,16 @@ void LoadBalancer::process()
         if (wasBusy)
         {
             busyThisCycle++;
-            server.processCycle();          // returns true every tick of work, but we don't need it
-            if (!server.isBusy()) completedThisCycle++;
+            server.processCycle(); // returns true every tick of work, but we don't need it
+            if (!server.isBusy())
+                completedThisCycle++;
         }
     }
 
     totalRequestsProcessed += completedThisCycle;
 
-    if (!logger) return;
+    if (!logger)
+        return;
 
     if (completedThisCycle > 0)
     {
@@ -297,20 +302,23 @@ void LoadBalancer::simulateCycle()
 
 // ======================== PUBLIC METHODS ========================
 
-void LoadBalancer::newRequest() {
+void LoadBalancer::newRequest()
+{
     std::uniform_int_distribution<int> newReqDist(1, 100);
     bool generateNewReq = (newReqDist(rng) <= newReqFreq);
     if (generateNewReq)
     {
-        if (auto logger = spdlog::get("lb")) logger->debug("Cycle {}: A new request arrived. Queue size before arrival: {}.", clock, requestQueue.size());
+        if (auto logger = spdlog::get("lb"))
+            logger->debug("Cycle {}: A new request arrived. Queue size before arrival: {}.", clock, requestQueue.size());
         addRequest(generateRequest());
     }
-
 }
 
-void LoadBalancer::printFinalStats() {
+void LoadBalancer::printFinalStats()
+{
     auto logger = spdlog::get("lb");
-    if (!logger) return;
+    if (!logger)
+        return;
 
     logger->info("Final stats after {} cycles:", clock - 1);
     logger->info("  Total requests generated: {}", totalRequests);
@@ -321,9 +329,11 @@ void LoadBalancer::printFinalStats() {
     logger->info("  Requests still queued:    {}", requestQueue.size());
     logger->info("  Active servers:           {}", servers.size());
 }
-void LoadBalancer::printInitialStats() {
+void LoadBalancer::printInitialStats()
+{
     auto logger = spdlog::get("lb");
-    if (!logger) return;
+    if (!logger)
+        return;
 
     logger->info("Initial stats at cycle {}:", clock);
     logger->info("  Active servers: {}", servers.size());

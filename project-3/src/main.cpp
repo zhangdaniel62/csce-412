@@ -34,10 +34,10 @@ void init_logging()
     logger->set_pattern("[%^%l%$] %v");
 
     // Default level (change to debug if needed)
-    logger->set_level(spdlog::level::info);
+    logger->set_level(spdlog::level::debug);
 
     // Auto-flush important messages
-    logger->flush_on(spdlog::level::info);
+    logger->flush_on(spdlog::level::debug);
 
     spdlog::register_logger(logger);
 }
