@@ -24,7 +24,7 @@ void init_logging()
     // Create sinks
     auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
     auto file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(
-        "logs/loadbalancer.log", true); // true = append mode
+        "logs/loadbalancer.txt", true); // true = append mode
 
     std::vector<spdlog::sink_ptr> sinks{console_sink, file_sink};
 
@@ -47,6 +47,9 @@ int main(int argc, char *argv[])
 {
     init_logging();
 
+    auto logger = spdlog::get("lb");
+    logger->set_level(spdlog::level::off);
+
     std::string path = (argc >= 2) ? argv[1] : "config.yaml";
 
     Config cfg = loadConfig(path);
@@ -63,6 +66,7 @@ int main(int argc, char *argv[])
                     cfg.minTimeStreaming,
                     cfg.maxTimeStreaming);
     
+    logger->set_level(spdlog::level::debug);
     lb.printInitialStats();
     spdlog::get("lb")->info("=====================================");
     spdlog::get("lb")->info("Starting load balancer...");
