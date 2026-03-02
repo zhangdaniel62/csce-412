@@ -18,7 +18,7 @@ target_include_directories(lb PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-# yaml-cpp dependency
+# ================= yaml-cpp dependency =================
 # Prefer an installed yaml-cpp, but automatically fetch it if missing.
 include(FetchContent)
 
@@ -51,4 +51,37 @@ if (NOT yaml-cpp_FOUND)
   endif()
 else()
   target_link_libraries(lb PRIVATE yaml-cpp::yaml-cpp)
+endif()
+
+# ================= spdlog dependency =================
+# Prefer installed spdlog, fetch if missing.
+
+find_package(spdlog QUIET)
+
+if (NOT spdlog_FOUND)
+  message(STATUS "spdlog not found; fetching via FetchContent...")
+
+  FetchContent_Declare(
+    spdlog
+    GIT_REPOSITORY https://github.com/gabime/spdlog.git
+    GIT_TAG        v1.17.0
+  )
+
+  # Disable extras
+  set(SPDLOG_BUILD_EXAMPLE OFF CACHE BOOL "" FORCE)
+  set(SPDLOG_BUILD_TESTS   OFF CACHE BOOL "" FORCE)
+  set(SPDLOG_BUILD_BENCH   OFF CACHE BOOL "" FORCE)
+  set(SPDLOG_FMT_EXTERNAL  OFF CACHE BOOL "" FORCE)
+  set(SPDLOG_INSTALL       OFF CACHE BOOL "" FORCE)
+
+  FetchContent_MakeAvailable(spdlog)
+endif()
+
+# Link spdlog
+if (TARGET spdlog::spdlog)
+  target_link_libraries(lb PRIVATE spdlog::spdlog)
+elseif (TARGET spdlog::spdlog_header_only)
+  target_link_libraries(lb PRIVATE spdlog::spdlog_header_only)
+elseif (TARGET spdlog)
+  target_link_libraries(lb PRIVATE spdlog)
 endif()

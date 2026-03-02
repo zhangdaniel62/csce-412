@@ -4,6 +4,9 @@
 #include <string>
 #include <stdexcept>
 
+// Logging through spdlog
+#include <spdlog/spdlog.h>
+
 using std::string;
 using std::to_string;
 
@@ -249,7 +252,7 @@ void LoadBalancer::run(int totalCycles)
     totalServersAdded = 0;
     totalServersRemoved = 0;
     clock = 1;
-    
+
     while (clock <= totalCycles)
     {
         simulateCycle();
